@@ -29,5 +29,5 @@ ini_set('display_errors', 1);
 
 // Establecer la conexión
 $conexion = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
-
+$debug = true;
 ?>

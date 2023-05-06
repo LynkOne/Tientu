@@ -12,13 +12,37 @@
 	
 <!-- Crea la estructura HTML -->
 <div id="contenedor-panel" class="container-fluid">
-	<div class="row">
+	<div class="row h-100">
 		<div id="panel-lateral-izquierdo" class="col-3">
-			<div class="contenedor-perfil">
-				<img src="<?php echo $perfil["foto_de_perfil"]; ?>" alt="Foto de perfil">
-				<p><?php echo $usuario["nombre_usuario"]; ?></p>
-				<p>Solicitudes de amistad pendientes: <?php echo $controladorSolicitudAmistad->contarSolicitudesPendientes($_SESSION["id_usuario"]); ?></p>
-				<p>Comentarios nuevos sin leer: <?php echo $controladorComentarios->contarComentariosNuevosSinLeer($_SESSION["id_usuario"]); ?></p>
+			<div class="row">
+				<div class="contenedor-perfil">
+					<div class="row panel-lateral-perfil">
+						<div class="col-4">
+							<img src="<?php echo $perfil["foto_de_perfil"]; ?>" alt="Foto de perfil">
+						</div>
+						<div class="col-8">
+						<p class="panel-lateral-perfil-nombre"><?php echo $usuario["nombre_usuario"]; ?></p>
+						<p class="panel-lateral-perfil-visitas"><i class="fa-sharp fa-solid fa-chart-simple"></i> <b>0</b> Visitas a tu perfil</p>
+						</div>
+					</div>
+					<hr>
+					<div class="row panel-lateral-notificaciones">
+						<div class="col-12">
+							<?php if( $debug || $controladorSolicitudAmistad->contarSolicitudesPendientes($_SESSION["id_usuario"]) > 0){ ?>
+								<p><i class="fa-solid fa-user-plus fa-fw"></i> <?php echo $controladorSolicitudAmistad->contarSolicitudesPendientes($_SESSION["id_usuario"]); ?> Peticiones de amistad </p>
+							<?php }?>
+							<?php if( $debug || $controladorComentarios->contarComentariosNuevosSinLeer($_SESSION["id_usuario"]) > 0){ ?>
+								<p><i class="fa-solid fa-comment fa-fw"></i> <?php echo $controladorComentarios->contarComentariosNuevosSinLeer($_SESSION["id_usuario"]); ?> Comentarios nuevos</p>
+							<?php }?>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<h3>Invitar amigos</h3>
+				</div>
 			</div>
 		</div>
 

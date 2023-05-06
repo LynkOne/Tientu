@@ -76,36 +76,44 @@ header a {
 /* Estilos para el panel lateral */
 
 #panel-lateral-izquierdo {
-    /*position: relative;
-    box-sizing: border-box;
-    padding: 0;
-    left: 0;
-    bottom: 0;
-    
-    width: 25%;
-    background-color: #f0f0f0;
-    z-index: 1;
-    overflow: hidden;
-    margin-top: 0;
-    border-left: 1px solid #b9b7b7;
-    border-right: 1px solid #b9b7b7;*/
     position: relative;
     top: 0;
     bottom: 0;
     left: 0;
    padding: 0;
     background-color: #f8f9fa;
-    border-right: 1px solid #dee2e6;
+    border-right: 1px solid #b9b7b7;
     z-index: 1; 
 
   }
-  
+  #panel-lateral-izquierdo .panel-lateral-perfil-nombre{
+    color: #087cca;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  #panel-lateral-izquierdo .panel-lateral-perfil-visitas i::before{
+    color: #087cca;
+ 
+  }
+
+  #panel-lateral-izquierdo .panel-lateral-notificaciones{
+    color: #0fa033;
+    font-weight: bold;
+  }
+
+  #panel-lateral-izquierdo .panel-lateral-notificaciones p{
+    margin-bottom: 5px;
+  }
+
   #panel-lateral-izquierdo img {
-    width: 150px;
-    height: 150px;
+    width: 100%;
+    height: auto;
     border-radius: 50%;
     display: block;
     margin: 0 auto;
+    aspect-ratio: 1/1;
+    max-height: 100px;
   }
   
   #panel-lateral-izquierdo h2 {
@@ -150,11 +158,15 @@ header a {
     box-sizing: border-box;*/
     position: relative;
     width: 80%;
-  margin-right: -1px;
-  padding: 20px;
-  float: right;
-  background-color: white;
-  z-index: 2;
+    margin-top: 50px;
+    margin-right: -1px;
+    padding: 20px;
+    float: right;
+    background-color: white;
+    z-index: 2;
+    border-top: 1px solid #b9b7b7;
+    border-bottom: 1px solid #b9b7b7;
+    border-left: 1px solid #b9b7b7;
   }
 
   

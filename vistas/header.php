@@ -13,6 +13,10 @@
 	<link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
 	<script src="assets/js/bootstrap/bootstrap.min.js"></script>
 
+	<link href="assets/fontawesome/css/fontawesome.css" rel="stylesheet">
+	<link href="assets/fontawesome/css/brands.css" rel="stylesheet">
+	<link href="assets/fontawesome/css/solid.css" rel="stylesheet">
+
 
 </head>
 <body>
