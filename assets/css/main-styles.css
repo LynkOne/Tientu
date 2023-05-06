@@ -65,15 +65,23 @@ header a {
     margin-right: 40px;
   }
 
+  #contenedor-panel {
+    position: relative;
+    top:70px;
+    height: calc(100% - 135px);
+    margin: 0;
+    padding: 0;
+  }
 
 /* Estilos para el panel lateral */
+
 #panel-lateral-izquierdo {
     position: relative;
     box-sizing: border-box;
-    top: 70px;
+    padding: 0;
     left: 0;
     bottom: 0;
-    height: 100%;
+    
     width: 25%;
     background-color: #f0f0f0;
     z-index: 1;
@@ -117,7 +125,7 @@ header a {
   }
 
   #panel-lateral-izquierdo .contenedor-perfil{
-    position: absolute;
+    
     z-index: 2;
     right: 0;
     margin-top: 40px;
@@ -130,21 +138,15 @@ header a {
     border-left: 1px solid #b9b7b7;
     border-right: none;
     padding: 20px;
+    box-sizing: border-box;
   }
 
   
   /* Estilos para el panel central */
   #panel-central {
-    position: fixed;
-    z-index: 1;
-    box-sizing: border-box;
-    margin-left: 25%;
-    width: 75%;
-    height: 100%;
+    
     background-color: #fff;
-    top:70px;
-    right:0;
-    float: right;
+    
     padding: 45px;
   }
   
@@ -212,3 +214,24 @@ header a {
     background-color: #086cca;
   }
   
+
+  /*Estilos footer*/
+  footer{
+    position: absolute;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    bottom: 0;
+    height: 65px;
+    box-sizing: border-box;
+  }
+  
+  footer a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }

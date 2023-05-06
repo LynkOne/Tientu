@@ -9,6 +9,11 @@
         
         <link rel="stylesheet" href="assets/css/login.css">
     <?php } ?>
+
+	<link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
+	<script src="assets/js/bootstrap/bootstrap.min.js"></script>
+
+
 </head>
 <body>
 	<header>

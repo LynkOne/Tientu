@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Perfil de Usuario</title>
-	<meta charset="utf-8">
-</head>
-<body>
+<?php include 'header.php'; ?>
+
 	<h1>Perfil de Usuario</h1>
 	
 	<div>
@@ -49,5 +44,4 @@
 		<?php endif; ?>
 	</div>
 
-</body>
-</html>
+	<?php require_once "footer.php"; ?>
