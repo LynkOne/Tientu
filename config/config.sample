@@ -1,0 +1,33 @@
+<?php
+
+// Configuración de la base de datos
+define('DB_HOST', '');
+define('DB_USER', '');
+define('DB_PASS', '');
+define('DB_NAME', '');
+define('DB_PORT', '');
+
+// Configuración de la aplicación
+define('URL', 'http://localhost/tientu/');
+define('NOMBRE_SITIO', 'Tientu');
+
+// Configuración de la sesión
+ini_set('session.cookie_httponly', 1);
+ini_set('session.cookie_secure', 1);
+session_name('nombre_de_tu_sesion');
+session_start();
+
+// Configuración del tiempo de expiración de la sesión
+define('SESSION_LIFETIME', 1800);
+
+// Configuración de la zona horaria
+date_default_timezone_set('Europe/Madrid');
+
+// Configuración de los errores
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Establecer la conexión
+$conexion = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
+
+?>

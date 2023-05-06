@@ -1,0 +1,214 @@
+html, body{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+
+/* Estilos para el header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #087cca;
+    border-bottom: 1px solid #ddd;
+    z-index: 999;
+    overflow: hidden;
+  }
+  header nav{
+    height: 100%;
+}  
+header ul{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    justify-content: space-between;
+}  
+header li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    
+    height: 100%;
+}
+header li:last-child {
+    margin-left: auto;
+  }
+header a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-decoration: none;
+    color: white;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    box-sizing: border-box;
+  }
+  header a.active, header a:hover {
+    background-color: #086cca;
+  }
+  header img{
+    height: 100%;
+    object-fit: contain;
+    max-width: 100%;
+    max-height: 100%;
+    margin-right: 40px;
+  }
+
+
+/* Estilos para el panel lateral */
+#panel-lateral-izquierdo {
+    position: relative;
+    box-sizing: border-box;
+    top: 70px;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 25%;
+    background-color: #f0f0f0;
+    z-index: 1;
+    overflow: hidden;
+    margin-top: 0;
+    border-left: 1px solid #b9b7b7;
+    border-right: 1px solid #b9b7b7;
+  }
+  
+  #panel-lateral-izquierdo img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  #panel-lateral-izquierdo h2 {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  #panel-lateral-izquierdo ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+  }
+  
+  #panel-lateral-izquierdo ul li {
+    margin-bottom: 5px;
+  }
+  
+  #panel-lateral-izquierdo ul li a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  #panel-lateral-izquierdo ul li a:hover {
+    color: #ff6600;
+  }
+
+  #panel-lateral-izquierdo .contenedor-perfil{
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    margin-top: 40px;
+    margin-right: -1px;
+    float: right;
+    width: 85%;
+    background-color: #fff;
+    border-top: 1px solid #b9b7b7;
+    border-bottom: 1px solid #b9b7b7;
+    border-left: 1px solid #b9b7b7;
+    border-right: none;
+    padding: 20px;
+  }
+
+  
+  /* Estilos para el panel central */
+  #panel-central {
+    position: fixed;
+    z-index: 1;
+    box-sizing: border-box;
+    margin-left: 25%;
+    width: 75%;
+    height: 100%;
+    background-color: #fff;
+    top:70px;
+    right:0;
+    float: right;
+    padding: 45px;
+  }
+  
+  #panel-central h2 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .publicacion {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .publicacion .usuario {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .publicacion .fecha {
+    color: #999;
+    margin-bottom: 5px;
+  }
+  
+  .publicacion .mensaje {
+    line-height: 1.5;
+  }
+  
+  /* Estilos para el formulario de publicación */
+#nueva-publicacion form {
+    width: 100%;
+    margin-top: 30px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #nueva-publicacion form textarea {
+    border: none;
+    resize: none;
+    height: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  #nueva-publicacion form button {
+    border: none;
+    background-color: #087cca;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  #nueva-publicacion form button:hover {
+    background-color: #086cca;
+  }
+  
