@@ -213,7 +213,7 @@ header a {
   }
   
   /* Estilos para el formulario de publicación */
-#nueva-publicacion form {
+.nueva-publicacion form {
     width: 100%;
     margin-top: 30px;
     border: 1px solid #ddd;
@@ -224,7 +224,7 @@ header a {
     flex-direction: column;
   }
   
-  #nueva-publicacion form textarea {
+  .nueva-publicacion form textarea {
     border: none;
     resize: none;
     height: 100px;
@@ -234,7 +234,7 @@ header a {
     margin-bottom: 20px;
   }
   
-  #nueva-publicacion form button {
+  .nueva-publicacion form button {
     border: none;
     background-color: #087cca;
     color: white;
@@ -245,10 +245,12 @@ header a {
     transition: all 0.3s ease;
   }
   
-  #nueva-publicacion form button:hover {
+  .nueva-publicacion form button:hover {
     background-color: #086cca;
   }
-  
+  .nueva-publicacion .form-control::placeholder{
+    font-family: var(--bs-font-sans-serif), 'Font Awesome 6 Free';
+  }
 
   /*Estilos footer*/
   footer{

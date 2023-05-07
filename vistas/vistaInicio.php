@@ -83,8 +83,8 @@
 							<p><b>Hoy</b> no tienes ningún evento</p>
 							<p><b>Mañana</b> no tienes ningún evento</p>
 							<hr>
-							<p>Ver todos</p>
-							<hr>
+							<a href="#">Ver todos</a>
+							
 						</div>
 					</div>
 				</div>
@@ -93,19 +93,8 @@
 		</div>
 
 		<div id="panel-central" class="col-6">
-			
-			
-			<div id="nueva-publicacion">
-				<h3>Nueva publicación</h3>
-				<form action="controlador_publicaciones.php" method="POST">
-				<label for="titulo">Título:</label>
-				<input type="text" id="titulo" name="titulo" required>
-
-				<label for="contenido">Contenido:</label>
-				<textarea id="contenido" name="contenido" required></textarea>
-
-				<input type="submit" value="Enviar publicación">
-				</form>
+			<div class="nueva-publicacion-container">
+				<?php require "vistas/publicaciones/vistaActualizarEstado.php"; ?>
 			</div>
 			<!-- Aquí iría el historial de publicaciones -->
 			

@@ -13,15 +13,15 @@ class ControladorPublicaciones {
     public function listar() {
         $modelo = new ModeloPublicaciones();
         $publicaciones = $modelo->obtenerPublicaciones();
-        require "vistas/vistaPublicaciones.php";
+        require "vistas/publicaciones/vistaPublicaciones.php";
     }
 
     public function crear() {
-        $modelo = new ModeloPublicaciones();
+        $modelo = new ModeloPublicaciones($this->conexion);
         $id_usuario = $_SESSION["id_usuario"];
-        $contenido = $_POST["contenido"];
+        $contenido = $_POST["nuevo_estado"];
         $modelo->crearPublicacion($id_usuario, $contenido);
-        header("Location: index.php?accion=publicaciones");
+        header("Location: index.php?accion=actualizarPublicacion");
     }
 
     public function obtenerHistoricoPublicacionesAmigos($id_usuario) {
@@ -40,6 +40,12 @@ class ControladorPublicaciones {
             return strtotime($b['fecha_publicacion']) - strtotime($a['fecha_publicacion']);
         });
         return $publicaciones;
+    }
+    public function obtenerUltimaPublicacionUsuario($id_usuario) {
+        
+        $modelo = new ModeloPublicaciones($this->conexion);
+        $estado = $modelo->obtenerUltimaPublicacionUsuario($id_usuario);
+        return $estado;
     }
 
 }

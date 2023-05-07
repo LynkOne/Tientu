@@ -7,6 +7,8 @@ require_once "config/requires.php";
 if (!isset($_SESSION["id_usuario"])) {
     header("Location: login.php");
     exit();
+}else{
+    $iduser=$_SESSION["id_usuario"];
 }
 //var_dump($_SESSION);
 
@@ -51,6 +53,9 @@ switch ($accion) {
         break;
     case "crearPublicacion":
         $controladorPublicaciones->crear();
+        break;
+    case "actualizarPublicacion":
+        require_once "vistas/publicaciones/vistaActualizarEstado.php";
         break;
     case "amigos":
         $amigos = $modeloUsuario->obtenerAmigos($_SESSION["id_usuario"]);
