@@ -71,6 +71,7 @@ header a {
     height: calc(100% - 135px);
     margin: 0;
     padding: 0;
+    width: 100%;
   }
 
 /* Estilos para el panel lateral */
@@ -81,7 +82,7 @@ header a {
     bottom: 0;
     left: 0;
    padding: 0;
-    background-color: #f8f9fa;
+    background-color: #f5f5f5;
     border-right: 1px solid #b9b7b7;
     z-index: 1; 
 
@@ -106,6 +107,13 @@ header a {
     margin-bottom: 5px;
   }
 
+  #panel-lateral-izquierdo .row div{
+    margin-left: auto;
+  }
+
+  #panel-lateral-izquierdo .panel-lateral-invitaciones, #panel-lateral-izquierdo .panel-lateral-calendario{
+    margin-top:10px;
+  }
   #panel-lateral-izquierdo img {
     width: 100%;
     height: auto;
@@ -157,11 +165,10 @@ header a {
     padding: 20px;
     box-sizing: border-box;*/
     position: relative;
-    width: 80%;
     margin-top: 50px;
     margin-right: -1px;
+    margin-left: auto;
     padding: 20px;
-    float: right;
     background-color: white;
     z-index: 2;
     border-top: 1px solid #b9b7b7;
