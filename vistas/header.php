@@ -27,10 +27,21 @@
 			<ul>
 				<li><img src="assets/img/logo/tientu_white.png"/></li>
 				<li><a href="index.php?accion=inicio" class="<?php if($accion == "inicio"){echo "active";} ?>">Inicio</a></li>
-				<li><a href="index.php?accion=perfil" class="<?php if($accion == "perfil"){echo "active";} ?>">Mi perfil</a></li>
-				<li><a href="amigos.php">Amigos</a></li>
+				<li><a href="index.php?accion=perfil" id="enlace-perfil" class="enlace-perfil <?php if($accion == "perfil"){echo "active";} ?>">Perfil</a></li>
+				<li><a href="amigos.php">Gente</a></li>
 				<li><a href="solicitudes_amistad.php">Solicitudes de amistad</a></li>
 				<li><a href="index.php?accion=cerrarSesion">Cerrar sesión</a></li>
 			</ul>
 		</nav>
 	</header>
+	<script>
+		$(document).ready(function() {
+			$('.enlace-perfil').click(function(event){
+				event.preventDefault(); // Evita la redirección
+				var url = $(this).attr('href'); // Obtiene la URL del enlace
+				$('#contenedor-panel').load(url); // Recarga el contenido del contenedor
+				$('nav a').removeClass('active');
+				$('#enlace-perfil').addClass('active');
+			});
+		});
+    </script>

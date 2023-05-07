@@ -1,4 +1,4 @@
-<?php include 'header.php'; ?>
+
 
 	<h1>Perfil de Usuario</h1>
 	
@@ -44,4 +44,4 @@
 		<?php endif; ?>
 	</div>
 
-	<?php require_once "footer.php"; ?>
+	

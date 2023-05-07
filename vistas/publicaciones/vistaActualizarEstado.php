@@ -3,8 +3,11 @@
     
     <form  id="publicacion-form" method="POST">
     <div class="row mb-2">
-        <div class="col-12">
-            <input type="text" class="form-control" id="nuevo_estado" name="nuevo_estado" placeholder="&#xf303; Actualiza tu estado" required>
+        <div class="col-12 nuevo_estado_container">
+            <input type="text" class="form-control" maxlength="200" id="nuevo_estado" name="nuevo_estado" placeholder="&#xf303; Actualiza tu estado" required>
+            <div class="counter-container">
+                <span id="counter">200</span>
+            </div>
         </div>
     </div>
     <div class="row d-flex align-items-center">
@@ -29,6 +32,17 @@
                 }
             });
         });
+
+        //Contador de caracteres
+        var maxLength = $('#nuevo_estado').attr('maxlength');
+        $('#contador').text(maxLength);
+        
+        $('#nuevo_estado').on('input', function() {
+            var length = $(this).val().length;
+            var length = maxLength - length;
+            $('#counter').text(length);
+        });
+
     });
     </script>
 </div>

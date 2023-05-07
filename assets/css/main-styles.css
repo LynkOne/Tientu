@@ -251,6 +251,26 @@ header a {
   .nueva-publicacion .form-control::placeholder{
     font-family: var(--bs-font-sans-serif), 'Font Awesome 6 Free';
   }
+  .nuevo_estado_container{
+    position: relative;
+  }
+  .counter-container {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 70px;
+    height: 30px;
+    border-radius: 20%;
+    background-color: #bebec2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #counter {
+    color: white;
+    font-size: 18px;
+  }
 
   /*Estilos footer*/
   footer{

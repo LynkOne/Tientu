@@ -24,7 +24,7 @@
 								</div>
 							</div>
 							<div class="col-8">
-							<p class="panel-lateral-perfil-nombre"><?php echo $usuario["nombre_usuario"]; ?></p>
+							<a href="index.php?accion=perfil" class="enlace-perfil"><p class="panel-lateral-perfil-nombre"><?php echo $usuario["nombre_usuario"]; ?></p></a>
 							<p class="panel-lateral-perfil-visitas"><i class="fa-sharp fa-solid fa-chart-simple"></i> <b>0</b> Visitas a tu perfil</p>
 							</div>
 						</div>
