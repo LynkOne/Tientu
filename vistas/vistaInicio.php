@@ -31,12 +31,16 @@
 						<hr>
 						<div class="row panel-lateral-notificaciones">
 							<div class="col-11">
+									<p><i class="fa-solid fa-envelope fa-fw"></i> <?php echo $controladorComentarios->contarComentariosNuevosSinLeer($_SESSION["id_usuario"]); ?> Mensajes privados</p>
 								<?php if( $debug || $controladorSolicitudAmistad->contarSolicitudesPendientes($_SESSION["id_usuario"]) > 0){ ?>
 									<p><i class="fa-solid fa-user-plus fa-fw"></i> <?php echo $controladorSolicitudAmistad->contarSolicitudesPendientes($_SESSION["id_usuario"]); ?> Peticiones de amistad </p>
 								<?php }?>
 								<?php if( $debug || $controladorComentarios->contarComentariosNuevosSinLeer($_SESSION["id_usuario"]) > 0){ ?>
-									<p><i class="fa-solid fa-comment fa-fw"></i> <?php echo $controladorComentarios->contarComentariosNuevosSinLeer($_SESSION["id_usuario"]); ?> Comentarios nuevos</p>
+									<p><i class="fa-solid fa-comment fa-fw"></i> <?php echo $controladorComentarios->contarComentariosNuevosSinLeer($_SESSION["id_usuario"]); ?> Comentarios</p>
 								<?php }?>
+								<p><i class="fa-solid fa-comment-dots fa-fw"></i> <?php echo $controladorComentarios->contarComentariosNuevosSinLeer($_SESSION["id_usuario"]); ?> Comentarios al estado</p>
+								<p><i class="fa-solid fa-calendar-days fa-fw"></i> <?php echo $controladorComentarios->contarComentariosNuevosSinLeer($_SESSION["id_usuario"]); ?> Invitación a eventos</p>
+								<p><i class="fa-solid fa-tag fa-fw"></i></i> <?php echo $controladorComentarios->contarComentariosNuevosSinLeer($_SESSION["id_usuario"]); ?> Etiquetas en fotos</p>
 								
 							</div>
 						</div>
@@ -97,22 +101,18 @@
 				<?php require "vistas/publicaciones/vistaActualizarEstado.php"; ?>
 			</div>
 			<!-- Aquí iría el historial de publicaciones -->
-			
-			<h2>Novedades de tus amigos</h2>
-			<hr>
-			<?php foreach ($publicaciones as $publicacion) { 
+			<div class="novedades-amigos-container">
 				
-				
-			?>
-			<div>
-				<h3><?php echo $publicacion["nombre_usuario"]; ?></h3>
-				<p><?php echo $publicacion["contenido"]; ?></p>
-				<p><?php echo $publicacion["fecha_publicacion"]; ?></p>
 			</div>
-			<?php } ?>
+			<script>
+				$(document).ready(function() {
+					$('.novedades-amigos-container').load("index.php?accion=novedades"); // Recarga el contenido del contenedor
+				});
+			</script>
 		</div>
 		<div id="panel-lateral-derecho" class="col-3"></div>
 	</div>
+	<!-- Incluye el archivo footer.php -->
+	<?php require_once "footer.php"; ?>
 </div>
-<!-- Incluye el archivo footer.php -->
-<?php require_once "footer.php"; ?>
+

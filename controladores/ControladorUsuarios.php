@@ -45,12 +45,6 @@ class ControladorUsuarios {
         }
     }
     
-    // Función que muestra el formulario de registro de usuario
-    public function registro() {
-        // Se muestra la vista con el formulario de registro de usuario
-        $vista_usuario = new VistaUsuario();
-        $vista_usuario->mostrarFormularioRegistro();
-    }
     
     // Función que procesa el registro de un usuario
     public function procesarRegistro() {

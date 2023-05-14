@@ -34,13 +34,13 @@ $modeloAmigos = new ModeloSolicitudAmistad($conexion);
 
 $controladorSolicitudAmistad = new ControladorSolicitudAmistad($conexion);
 $modeloSolicitudAmistad = new ModeloSolicitudAmistad($conexion);
-
+                                          
 $controladorComentarios = new ControladorComentarios($conexion);
 $modeloComentarios = new ModeloComentarios($conexion);
 // Manejamos las acciones solicitadas por el usuario
-$usuario = $modeloUsuario->obtenerUsuario($_SESSION["id_usuario"]);
-$perfil = $modeloPerfilesUsuario->obtenerPorId($_SESSION["id_usuario"]);
-$publicaciones = $controladorPublicaciones->obtenerHistoricoPublicacionesAmigos($_SESSION["id_usuario"]);
+$usuario = $modeloUsuario->obtenerUsuario($iduser);
+$perfil = $modeloPerfilesUsuario->obtenerPorId($iduser);
+$publicaciones = $controladorPublicaciones->obtenerHistoricoPublicacionesAmigos($iduser);
 switch ($accion) {
     case "inicio":
         require_once "vistas/vistaInicio.php";
@@ -58,8 +58,12 @@ switch ($accion) {
         require_once "vistas/publicaciones/vistaActualizarEstado.php";
         break;
     case "amigos":
-        $amigos = $modeloUsuario->obtenerAmigos($_SESSION["id_usuario"]);
+        $amigos = $modeloUsuario->obtenerAmigos($iduser);
         require_once "vistas/vistaAmigos.php";
+        break;
+    case "novedades":
+        $novedades=$controladorPublicaciones->obtenerNovedades($iduser);
+        require_once "vistas/publicaciones/vistaNovedades.php";
         break;
     case "cerrarSesion":
         session_unset();

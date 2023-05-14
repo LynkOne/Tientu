@@ -57,8 +57,8 @@ class ModeloAmigos {
         //$conexion = new Conexion();
         
         // Sentencia SQL para obtener la lista de amigos
-        $sql = "SELECT * FROM amigos WHERE id_usuario_1 = ? OR id_usuario_2 = ?";
-        
+        $sql = "SELECT * FROM usuarios WHERE id_usuario IN (SELECT id_usuario_1 as amigo_id FROM amigos WHERE id_usuario_2 = ? UNION SELECT id_usuario_2 as amigo_id FROM amigos WHERE id_usuario_1 = ?)";
+        //$sql = "SELECT id_usuario_1 as amigo_id FROM amigos WHERE id_usuario_2 = ? UNION SELECT id_usuario_2 as amigo_id FROM amigos WHERE id_usuario_1 = ?";
         // Preparación de la sentencia SQL
         $stmt = $this->conexion->prepare($sql);
         
@@ -74,7 +74,7 @@ class ModeloAmigos {
         // Creación de un array con los amigos del usuario
         $amigos = array();
         while ($fila = $resultado->fetch_assoc()) {
-            $amigos[] = $fila["id_amigo"];
+            $amigos[] = $fila;
         }
         
         // Cierre de la conexión a la base de datos

@@ -3,10 +3,12 @@ html, body{
     height: 100%;
     padding: 0;
     margin: 0;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
-
+a{
+    text-decoration: none!important;
+}
 /* Estilos para el header */
 header {
     position: fixed;
@@ -68,10 +70,12 @@ header a {
   #contenedor-panel {
     position: relative;
     top:70px;
-    height: calc(100% - 135px);
+    height: calc(100% - 70px);
     margin: 0;
     padding: 0;
     width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
 
 /* Estilos para el panel lateral */
@@ -174,6 +178,7 @@ header a {
     border-top: 1px solid #b9b7b7;
     border-bottom: 1px solid #b9b7b7;
     border-left: 1px solid #b9b7b7;
+    /*overflow: scroll;*/
   }
 
   
@@ -274,7 +279,7 @@ header a {
 
   /*Estilos footer*/
   footer{
-    position: absolute;
+    /*position: absolute;*/
     width: 100%;
     background-color: #333;
     color: #fff;

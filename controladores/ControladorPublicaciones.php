@@ -25,27 +25,40 @@ class ControladorPublicaciones {
     }
 
     public function obtenerHistoricoPublicacionesAmigos($id_usuario) {
+        //return false;
         $publicaciones = array();
         $modelo = new ModeloAmigos($this->conexion);
         $amigos = $modelo->obtenerAmigos($id_usuario);
+        //var_dump($amigos);
+        $modeloPublicaciones = new ModeloPublicaciones($this->conexion);
         foreach ($amigos as $amigo) {
-            $publicaciones_amigo = $this->modeloPublicaciones->obtenerPublicacionesUsuario($amigo['id_amigo']);
+            $publicaciones_amigo = $modeloPublicaciones->obtenerPublicacionesUsuario($amigo["id_usuario"]);
+            //var_dump($publicaciones_amigo);
             foreach ($publicaciones_amigo as $publicacion_amigo) {
                 $publicacion_amigo['nombre_usuario'] = $amigo['nombre_usuario'];
-                $publicacion_amigo['nombre_completo'] = $amigo['nombre_completo'];
+                
                 $publicaciones[] = $publicacion_amigo;
             }
         }
         usort($publicaciones, function($a, $b) {
-            return strtotime($b['fecha_publicacion']) - strtotime($a['fecha_publicacion']);
+            return strtotime($b['fecha_creacion']) - strtotime($a['fecha_creacion']);
         });
         return $publicaciones;
     }
+    
     public function obtenerUltimaPublicacionUsuario($id_usuario) {
         
         $modelo = new ModeloPublicaciones($this->conexion);
         $estado = $modelo->obtenerUltimaPublicacionUsuario($id_usuario);
         return $estado;
+    }
+    public function obtenerNovedades($id_usuario){
+        $modeloPublicaciones = new ModeloPublicaciones($this->conexion);
+        $novedades = $modeloPublicaciones->obtenerNovedades($id_usuario);
+        //header('Location: ../vistas/publicaciones/vistaNovedades.php');
+        
+        return $novedades;
+
     }
 
 }

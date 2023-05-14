@@ -66,4 +66,23 @@ class ModeloPerfilesUsuario {
         $consulta->close();
         return $resultado;
     }
+    // Obtener listado de todos los municipios
+    public function obtenerMunicipios() {
+       // Preparar la consulta
+        $consulta = $this->conexion->prepare('SELECT * FROM fxmunicipios');
+
+        // Ejecutar la consulta
+        $consulta->execute();
+
+        // Obtener los resultados de la consulta como objetos
+        $resultado = $consulta->get_result();
+        $municipios = array();
+        while ($fila = $resultado->fetch_object()) {
+            $municipios[] = $fila;
+        }
+
+        // Cerrar la consulta y devolver el resultado
+        $consulta->close();
+        return $municipios;
+    }
 }
