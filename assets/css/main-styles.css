@@ -277,6 +277,11 @@ header a {
     font-size: 18px;
   }
 
+
+  /*Estilos panel novedades amigos*/
+  .novedades .entrada a{
+    border: 1px solid #b9b7b7;
+  }
   /*Estilos footer*/
   footer{
     /*position: absolute;*/

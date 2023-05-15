@@ -53,11 +53,22 @@ class ControladorPublicaciones {
         return $estado;
     }
     public function obtenerNovedades($id_usuario){
+        //Obtener listado de amigos ordenado por ultima actividad
+        $modeloAmigos = new ModeloAmigos($this->conexion);
         $modeloPublicaciones = new ModeloPublicaciones($this->conexion);
-        $novedades = $modeloPublicaciones->obtenerNovedades($id_usuario);
-        //header('Location: ../vistas/publicaciones/vistaNovedades.php');
+
+        $amigos = $modeloAmigos->obtenerAmigosNovedades($id_usuario);
+        //var_dump($amigos);
+        //Obtener publicaciones de cada amigo
+        foreach($amigos as $amigo){
+            
+            $novedades = $modeloPublicaciones->obtenerNovedades($amigo->id_usuario);
+            $amigo->notificaciones=$novedades;
+        }
         
-        return $novedades;
+        //header('Location: ../vistas/publicaciones/vistaNovedades.php');
+        //var_dump($amigos);
+        return $amigos;
 
     }
 

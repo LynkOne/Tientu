@@ -1,5 +1,10 @@
 <?php 
 include "config/requires.php";
+
+if (isset($_SESSION["id_usuario"])) {
+  header("Location: index.php");
+  exit();
+}
 $controladorUsuarios = new ControladorUsuarios($conexion);
 $modeloPerfilesUsuario = new ModeloPerfilesUsuario($conexion);
 if (isset($_POST["accion"])) {
@@ -82,7 +87,12 @@ include 'vistas/header.php';
       <form class="registro" action="registro.php" method="POST">
         <div class="form-group">
           <div class="instrucciones-registro">
-            Este formulario te permite registrar una cuenta en Tientu usando una invitación de <b>Inserte Nombre Aquí</b>
+            <div class="container">
+              <div class="row">
+                <div class="col-3"><img style="width:100%;" src="assets/img/profile/blank_avatar.png"/></div>
+                <div class="col-9">Este formulario te permite registrar una cuenta en Tientu usando una invitación de <b>Inserte Nombre Aquí</b></div>
+              </div>
+            </div>
           </div>
           <hr>
           <label for="nombre">Nombre completo:</label>

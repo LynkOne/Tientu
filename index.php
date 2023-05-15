@@ -40,7 +40,7 @@ $modeloComentarios = new ModeloComentarios($conexion);
 // Manejamos las acciones solicitadas por el usuario
 $usuario = $modeloUsuario->obtenerUsuario($iduser);
 $perfil = $modeloPerfilesUsuario->obtenerPorId($iduser);
-$publicaciones = $controladorPublicaciones->obtenerHistoricoPublicacionesAmigos($iduser);
+//$publicaciones = $controladorPublicaciones->obtenerHistoricoPublicacionesAmigos($iduser);
 switch ($accion) {
     case "inicio":
         require_once "vistas/vistaInicio.php";

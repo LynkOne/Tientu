@@ -74,9 +74,45 @@ class ModeloAmigos {
         // Creación de un array con los amigos del usuario
         $amigos = array();
         while ($fila = $resultado->fetch_assoc()) {
-            $amigos[] = $fila;
+            $amigos[] = (Object)$fila;
         }
         
+        // Cierre de la conexión a la base de datos
+        $stmt->close();
+        //$this->conexion->close();
+        
+        return $amigos;
+    }
+    public function obtenerAmigosNovedades($id_usuario) {
+        // Conexión a la base de datos
+        //$conexion = new Conexion();
+        
+        // Sentencia SQL para obtener la lista de amigos
+        $sql = "SELECT usuarios.*,
+        (SELECT fecha_creacion FROM publicaciones WHERE id_usuario = usuarios.id_usuario LIMIT 1) as ultima_publicacion
+        FROM usuarios 
+        
+        WHERE usuarios.id_usuario IN (SELECT id_usuario_1 as amigo_id FROM amigos WHERE id_usuario_2 = ? UNION SELECT id_usuario_2 as amigo_id FROM amigos WHERE id_usuario_1 = ?)
+        HAVING ultima_publicacion IS NOT NULL";
+        //$sql = "SELECT id_usuario_1 as amigo_id FROM amigos WHERE id_usuario_2 = ? UNION SELECT id_usuario_2 as amigo_id FROM amigos WHERE id_usuario_1 = ?";
+        // Preparación de la sentencia SQL
+        $stmt = $this->conexion->prepare($sql);
+        
+        // Asignación de los valores a los parámetros de la sentencia SQL
+        $stmt->bind_param("ii", $id_usuario, $id_usuario);
+        
+        // Ejecución de la sentencia SQL
+        $stmt->execute();
+        
+        // Obtención del resultado de la consulta
+        $resultado = $stmt->get_result();
+        
+        // Creación de un array con los amigos del usuario
+        $amigos = array();
+        while ($fila = $resultado->fetch_assoc()) {
+            $amigos[] = (Object)$fila;
+        }
+        //var_dump($amigos);
         // Cierre de la conexión a la base de datos
         $stmt->close();
         //$this->conexion->close();
