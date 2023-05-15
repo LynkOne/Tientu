@@ -1,45 +1,67 @@
 <?php 
 include "config/requires.php";
-
+$controladorUsuarios = new ControladorUsuarios($conexion);
+$modeloPerfilesUsuario = new ModeloPerfilesUsuario($conexion);
 if (isset($_POST["accion"])) {
   $accion = $_POST["accion"];
-  if(isset($_POST["correo"])){
-    //comprobar si existe el correo en la bd
-    //...
-    if(true){//si existe
-      echo "existe";
+  if($accion == "verificar_email"){  
+    if(isset($_POST["email"])){
+      //comprobar si existe el correo en la bd
+      $existeUser=$controladorUsuarios->obtenerPorCorreo($_POST["email"]);
+      if($existeUser != NULL){
+        //$existe=1;
+        echo "existe";
+      }else{
+        //$existe=0;
+        echo "no_existe";
+      }
     }else{
-      echo "no_existe";
+      echo "else post email";
+      var_dump($_POST);
     }
-
   }else{
     var_dump($_POST);
   }
   exit();
 }
 
-if(!empty($_POST["nombre"]) && !empty($_POST["correo"]) && !empty($_POST["password"]) && !empty($_POST["password_confirm"])){
+
+
+if(!empty($_POST["nombre"]) 
+&& !empty($_POST["sexo"])
+&& !empty($_POST["fecha_nacimiento"])
+&& !empty($_POST["municipio-id"])
+&& !empty($_POST["correo"]) 
+&& !empty($_POST["correo_confirmar"])
+&& !empty($_POST["password"]) 
+&& !empty($_POST["password_confirm"]) ){
   //echo "SUBMIT!";
   // Insertar usuario en la base de datos
-  //$controladorUsuarios = new ControladorUsuarios($conexion);
-  //$resultado = $controladorUsuarios->procesarRegistro();
-  var_dump($_POST);
+  //
+  $resultado = $controladorUsuarios->procesarRegistro();
+
+  var_dump($resultado);
   
-  if($resultado){
+  
+  if($resultado != NULL){
+    //Crear perfil del usuario
+    $modeloPerfilesUsuario->crearPerfil($resultado["id_usuario"], $_POST["fecha_nacimiento"], $_POST["municipio-id"], $_POST["sexo"]);
+
+    header("Location: index.php?action=login");
       // El usuario ha sido insertado correctamente
   }else{
+      
       // Error al insertar el usuario en la base de datos
   }
-
+  exit();
 }
 
 
 
-
+$municipios = $modeloPerfilesUsuario->obtenerMunicipios();
 
 include 'vistas/header.php'; 
-$modeloPerfilesUsuario = new ModeloPerfilesUsuario($conexion);
-$municipios = $modeloPerfilesUsuario->obtenerMunicipios();
+
 //var_dump($municipios);
 //exit();
 // Validar datos
@@ -93,6 +115,7 @@ $municipios = $modeloPerfilesUsuario->obtenerMunicipios();
             <?php } ?>
             <!-- Agrega más opciones de municipios aquí -->
           </datalist>
+          <div id="municipio_error" class="error-message" style="display: none;"></div>
         </div>
         <div class="form-group">
           <label for="correo">Correo electrónico:</label>
@@ -134,6 +157,8 @@ $municipios = $modeloPerfilesUsuario->obtenerMunicipios();
       var selectedDataValue = option.data('value');
       console.log("selected option id: " + selectedDataValue);
       $(this).attr('data-value', selectedDataValue);
+      $('#municipio').removeClass('error');
+      $('#municipio_error').hide();
     });
 
     $('#password').on('keyup', function() {
@@ -191,7 +216,16 @@ $municipios = $modeloPerfilesUsuario->obtenerMunicipios();
 
       //Obtener id del municipio seleccionado
       var valueToSubmit = $('#municipio').data('value');
-      $(this).append('<input type="hidden" name="municipio-id" value="' + valueToSubmit + '">');
+      if (typeof valueToSubmit === 'undefined') {
+        $('#municipio').addClass('error');
+        $('#municipio_error').text('Debes seleccionar un municipio.').show();
+        error=true;
+      }else{
+        $('#municipio').removeClass('error');
+        $('#municipio_error').hide();
+        $(this).append('<input type="hidden" name="municipio-id" value="' + valueToSubmit + '">');
+      }
+      
 
       //Comprobar email
 
@@ -221,7 +255,9 @@ $municipios = $modeloPerfilesUsuario->obtenerMunicipios();
             $('#correo').addClass('error');
             $('#correo_error').text('El email ya está registrado. Por favor, utiliza otro email.').show();
             error=true;
-          } 
+          } else if(response === 'no_existe'){
+            $('#correo_error').hide();
+          }
         },
 
         error: function() {
@@ -253,7 +289,7 @@ $municipios = $modeloPerfilesUsuario->obtenerMunicipios();
       if(error){
         return false;
       }else{
-        //$('form').unbind('submit').submit(); // Enviar el formulario nuevamente
+        $('form').unbind('submit').submit(); // Enviar el formulario nuevamente
       }
       
       

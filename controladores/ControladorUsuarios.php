@@ -55,11 +55,11 @@ class ControladorUsuarios {
         
         // Se registra al usuario
         $modelo_usuario = new ModeloUsuarios($this->conexion);
-        echo $modelo_usuario->crear($nombre, $password, $email);
-        
+        $modelo_usuario->crear($nombre, $password, $email);
+        $usuario_creado=$modelo_usuario->obtenerPorCorreo($email);
         
         // Se muestra un mensaje de éxito y se redirige al usuario al formulario de inicio de sesión
-        return "El usuario ha sido registrado exitosamente.";
+        return $usuario_creado;
     }
     
     // Función que cierra la sesión de un usuario

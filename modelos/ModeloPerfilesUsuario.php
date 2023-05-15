@@ -10,6 +10,16 @@ class ModeloPerfilesUsuario {
     public function __construct($conexion) {
         $this->conexion = $conexion;
     }
+    //Crear perfil de usuario
+    public function crearPerfil($id_usuario, $fecha_nacimiento, $municipio, $sexo) {
+        $sql = "INSERT INTO perfiles_usuario (id_usuario, fecha_nacimiento, municipio, sexo) VALUES (?, ?, ?, ?)";
+        $sentencia = $this->conexion->prepare($sql);
+        $sentencia->bind_param("isii", $id_usuario, $fecha_nacimiento, $municipio, $sexo);
+        $resultado=$sentencia->execute();
+        $sentencia->close();
+        return $resultado;
+    }
+
 
     // Obtener la información del perfil de usuario por nombre de usuario
     public function obtenerPorNombreUsuario($nombreUsuario) {
