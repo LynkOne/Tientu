@@ -10,28 +10,12 @@
 						<div class="row panel-lateral-perfil">
 							<div class="col-4">
 								<div class="mx-auto">
-									<img src="<?php echo $perfil["foto_de_perfil"]; ?>" alt="Foto de perfil">
+									<img src="<?php echo $perfil->foto_de_perfil; ?>" alt="Foto de perfil">
 								</div>
 							</div>
 							<div class="col-8">
 							<a href="index.php?accion=perfil" class="enlace-perfil"><p class="panel-lateral-perfil-nombre"><?php echo $usuario["nombre_usuario"]; ?></p></a>
 							<p class="panel-lateral-perfil-visitas"><i class="fa-sharp fa-solid fa-chart-simple"></i> <b>0</b> Visitas a tu perfil</p>
-							</div>
-						</div>
-						<hr>
-						<div class="row panel-lateral-notificaciones">
-							<div class="col-11">
-									<p><i class="fa-solid fa-envelope fa-fw"></i> <?php echo $controladorComentarios->contarComentariosNuevosSinLeer($_SESSION["id_usuario"]); ?> Mensajes privados</p>
-								<?php if( $debug || $controladorSolicitudAmistad->contarSolicitudesPendientes($_SESSION["id_usuario"]) > 0){ ?>
-									<p><i class="fa-solid fa-user-plus fa-fw"></i> <?php echo $controladorSolicitudAmistad->contarSolicitudesPendientes($_SESSION["id_usuario"]); ?> Peticiones de amistad </p>
-								<?php }?>
-								<?php if( $debug || $controladorComentarios->contarComentariosNuevosSinLeer($_SESSION["id_usuario"]) > 0){ ?>
-									<p><i class="fa-solid fa-comment fa-fw"></i> <?php echo $controladorComentarios->contarComentariosNuevosSinLeer($_SESSION["id_usuario"]); ?> Comentarios</p>
-								<?php }?>
-								<p><i class="fa-solid fa-comment-dots fa-fw"></i> <?php echo $controladorComentarios->contarComentariosNuevosSinLeer($_SESSION["id_usuario"]); ?> Comentarios al estado</p>
-								<p><i class="fa-solid fa-calendar-days fa-fw"></i> <?php echo $controladorComentarios->contarComentariosNuevosSinLeer($_SESSION["id_usuario"]); ?> Invitación a eventos</p>
-								<p><i class="fa-solid fa-tag fa-fw"></i></i> <?php echo $controladorComentarios->contarComentariosNuevosSinLeer($_SESSION["id_usuario"]); ?> Etiquetas en fotos</p>
-								
 							</div>
 						</div>
 					</div>
@@ -91,19 +75,10 @@
 				<?php require "vistas/publicaciones/vistaActualizarEstado.php"; ?>
 			</div>
 			<!-- Aquí iría el historial de publicaciones -->
+			Entradas usuario
+			<br>
+			Tablon usuario
 			
-			<h2>Novedades de tus amigos</h2>
-			<hr>
-			<?php foreach ($publicaciones as $publicacion) { 
-				
-				
-			?>
-			<div>
-				<h3><?php echo $publicacion["nombre_usuario"]; ?></h3>
-				<p><?php echo $publicacion["contenido"]; ?></p>
-				<p><?php echo $publicacion["fecha_publicacion"]; ?></p>
-			</div>
-			<?php } ?>
 		</div>
 		<div id="panel-lateral-derecho" class="col-3"></div>
 	</div>

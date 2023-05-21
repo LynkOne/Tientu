@@ -125,7 +125,7 @@ header a {
     display: block;
     margin: 0 auto;
     aspect-ratio: 1/1;
-    max-height: 100px;
+    /*max-height: 100px;*/
   }
   
   #panel-lateral-izquierdo h2 {

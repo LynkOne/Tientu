@@ -60,7 +60,8 @@ class ModeloPerfilesUsuario {
         if(!isset($perfilUsuario["foto_de_perfil"])){
             $perfilUsuario["foto_de_perfil"] = "assets/img/profile/Profile.jpg";
         }
-        return $perfilUsuario;
+        
+        return (Object)$perfilUsuario;
     }
 
     // Actualizar la información del perfil de usuario

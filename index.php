@@ -46,7 +46,11 @@ switch ($accion) {
         require_once "vistas/vistaInicio.php";
         break;
     case "perfil":
-        require_once "vistas/vistaPerfilesUsuario.php";
+        $entradas = $controladorPublicaciones->obtenerEntradasUsuario($iduser);
+        require_once "vistas/perfiles/vistaMiPerfil.php";
+        break;
+    case "perfilUsuario":
+        require_once "vistas/perfiles/vistaPerfilUsuario.php";
         break;
     case "publicaciones":
         $controladorPublicaciones->listar();
@@ -77,54 +81,4 @@ switch ($accion) {
         header("HTTP/1.0 404 Not Found");
         exit();
 }
-
-
-/*
-// Carga del archivo de configuración
-require_once 'config/config.php';
-
-// Obtener la acción a realizar
-$action = $_GET['action'] ?? 'index';
-
-// Crear el controlador y ejecutar la acción solicitada
-switch ($action) {
-    case 'index':
-        require_once 'controladores/ControladorUsuarios.php';
-        $controller = new ControladorUsuarios($conexion);
-        $controller->index();
-        break;
-    case 'login':
-        require_once 'controladores/ControladorUsuarios.php';
-        $controller = new ControladorUsuarios($conexion);
-        $controller->login();
-        break;
-    case 'logout':
-        require_once 'controladores/ControladorUsuarios.php';
-        $controller = new ControladorUsuarios($conexion);
-        $controller->logout();
-        break;
-    case 'perfil':
-        require_once 'controladores/ControladorPerfilesUsuario.php';
-        $controller = new ControladorPerfilesUsuario($conexion);
-        $controller->perfil();
-        break;
-    case 'amigos':
-        require_once 'controladores/ControladorAmigos.php';
-        $controller = new ControladorAmigos($conexion);
-        $controller->index();
-        break;
-    case 'solicitudes':
-        require_once 'controladores/ControladorSolicitudesAmistad.php';
-        $controller = new ControladorSolicitudesAmistad($conexion);
-        $controller->index();
-        break;
-    case 'comentarios':
-        require_once 'controladores/ControladorComentarios.php';
-        $controller = new ControladorComentarios($conexion);
-        $controller->index();
-        break;
-    default:
-        require_once 'vistas/404.php';
-        break;
-}*/
 ?>

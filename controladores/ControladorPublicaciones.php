@@ -45,25 +45,32 @@ class ControladorPublicaciones {
         });
         return $publicaciones;
     }
+    public function obtenerEntradasUsuario($id_usuario) {
+        $modeloPublicaciones = new ModeloPublicaciones($this->conexion);
+        $entradas = $modeloPublicaciones->obtenerEntradasUsuario($id_usuario);
+
+        return $entradas;
+    }
     
-    public function obtenerUltimaPublicacionUsuario($id_usuario) {
+    public function obtenerUltimoEstadoUsuario($id_usuario) {
         
         $modelo = new ModeloPublicaciones($this->conexion);
-        $estado = $modelo->obtenerUltimaPublicacionUsuario($id_usuario);
+        $estado = $modelo->obtenerUltimoEstadoUsuario($id_usuario);
         return $estado;
     }
     public function obtenerNovedades($id_usuario){
         //Obtener listado de amigos ordenado por ultima actividad
         $modeloAmigos = new ModeloAmigos($this->conexion);
         $modeloPublicaciones = new ModeloPublicaciones($this->conexion);
+        $modeloPerfilesUsuario = new ModeloPerfilesUsuario($this->conexion);
 
         $amigos = $modeloAmigos->obtenerAmigosNovedades($id_usuario);
         //var_dump($amigos);
         //Obtener publicaciones de cada amigo
         foreach($amigos as $amigo){
-            
-            $novedades = $modeloPublicaciones->obtenerNovedades($amigo->id_usuario);
-            $amigo->notificaciones=$novedades;
+            $amigo->notificaciones=$modeloPublicaciones->obtenerNovedades($amigo->id_usuario);
+            $amigo->estado=$modeloPublicaciones->obtenerUltimoEstadoUsuario($amigo->id_usuario);
+            $amigo->perfil=$modeloPerfilesUsuario->obtenerPorId($amigo->id_usuario);
         }
         
         //header('Location: ../vistas/publicaciones/vistaNovedades.php');

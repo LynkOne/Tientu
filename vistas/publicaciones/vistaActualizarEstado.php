@@ -12,7 +12,7 @@
     </div>
     <div class="row d-flex align-items-center">
         <div class="col-10">
-            <span><b>Última actualización:</b> <?php echo $controladorPublicaciones->obtenerUltimaPublicacionUsuario($iduser)["contenido"]; ?></span>
+            <span><b>Última actualización:</b> <?php echo $controladorPublicaciones->obtenerUltimoEstadoUsuario($iduser)->contenido; ?></span>
         </div>
         <div class="col-2 d-flex justify-content-end">
             <input type="submit" class="btn btn-primary btn-block" value="Guardar">

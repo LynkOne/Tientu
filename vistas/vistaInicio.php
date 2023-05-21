@@ -20,7 +20,7 @@
 						<div class="row panel-lateral-perfil">
 							<div class="col-4">
 								<div class="mx-auto">
-									<img src="<?php echo $perfil["foto_de_perfil"]; ?>" alt="Foto de perfil">
+									<img src="<?php echo $perfil->foto_de_perfil; ?>" alt="Foto de perfil">
 								</div>
 							</div>
 							<div class="col-8">

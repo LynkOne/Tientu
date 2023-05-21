@@ -38,15 +38,32 @@ class ModeloPublicaciones {
 
         return $novedades;
     }
-    public function obtenerUltimaPublicacionUsuario($usuario) {
+
+    //obtenerEntradasUsuario
+    public function obtenerEntradasUsuario($id_usuario) {
+        $sql = "SELECT * FROM publicaciones WHERE id_usuario = ?  AND tipo = 5 ORDER BY fecha_creacion DESC";
+        $resultado = $this->conexion->prepare($sql);
+        $resultado->bind_param("i", $id_usuario);
+        $resultado->execute();
+        $resultados = $resultado->get_result();
+
+        $entradas = array();
+        while ($fila = $resultados->fetch_assoc()) {
+            $entradas[] = (Object)$fila;
+        }
+        $resultado->close();
+
+        return $entradas;
+    }
+    public function obtenerUltimoEstadoUsuario($usuario) {
         $sql = "SELECT * FROM publicaciones WHERE id_usuario = $usuario AND tipo = 1 ORDER BY fecha_creacion DESC LIMIT 1";
         $resultado = $this->conexion->query($sql);
         $publicacion = $resultado->fetch_assoc();
         if(!empty($publicacion)){
-            return $publicacion;
+            return (Object) $publicacion;
             //return $resultado->fetch_all(MYSQLI_ASSOC)[0];
         }else{
-            return array("contenido" => "");
+            return (Object) array("contenido" => "");
         }
         
     }
