@@ -53,14 +53,15 @@ class ModeloPerfilesUsuario {
         $resultado = $consulta->get_result();
 
         // Obtener la fila del resultado
-        $perfilUsuario = $resultado->fetch_assoc();
+        $perfilUsuario = (Object)$resultado->fetch_assoc();
 
         // Cerrar la consulta y devolver el resultado
         $consulta->close();
-        if(!isset($perfilUsuario["foto_de_perfil"])){
-            $perfilUsuario["foto_de_perfil"] = "assets/img/profile/Profile.jpg";
-        }
         
+        if(!isset($perfilUsuario->foto_de_perfil)){
+            $perfilUsuario->foto_de_perfil = "assets/img/profile/blank_avatar.png";
+        }
+        //var_dump($perfilUsuario);
         return (Object)$perfilUsuario;
     }
 

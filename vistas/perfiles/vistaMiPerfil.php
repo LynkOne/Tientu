@@ -44,7 +44,7 @@
 							<div class="container" style="margin: 0; padding: 0;">
 								<div class="row" style="margin: 0 auto;display: flex;justify-content: space-between;padding: 0;align-items: center;">
 									<div class="col-12 " style="margin: 0; padding: 0;">
-										<h5>Mus páginas</h5>
+										<h5>Mis páginas</h5>
 									</div>
 									<hr>
 								</div>

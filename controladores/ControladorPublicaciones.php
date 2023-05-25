@@ -52,6 +52,7 @@ class ControladorPublicaciones {
         return $entradas;
     }
     
+    
     public function obtenerUltimoEstadoUsuario($id_usuario) {
         
         $modelo = new ModeloPublicaciones($this->conexion);
@@ -78,6 +79,8 @@ class ControladorPublicaciones {
         return $amigos;
 
     }
+
+
 
 }
 

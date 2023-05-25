@@ -19,7 +19,7 @@
         ?>
         <div class="row" style="">
             <div class="col-2 " style="">
-                <img class="fotoPerfilNovedades w-100" style="    border-radius: 50%;aspect-ratio:1/1;"src="<?=$amigo->perfil->foto_de_perfil; ?>"/>
+                <img class="fotoPerfilNovedades w-100" style="    border-radius: 50%;aspect-ratio:1/1;object-fit:cover;"src="<?=$amigo->perfil->foto_de_perfil; ?>"/>
             </div>
             <div class="col-10" style="">
                 <?='<b><a href="#">'.$amigo->nombre_usuario."</a></b> <span>".$amigo->estado->contenido."</span>"?>

@@ -1,4 +1,5 @@
 <?php
+
 // Incluimos los archivos de configuración y las clases necesarias
 require_once "config/requires.php";
 
@@ -40,10 +41,16 @@ $modeloComentarios = new ModeloComentarios($conexion);
 // Manejamos las acciones solicitadas por el usuario
 $usuario = $modeloUsuario->obtenerUsuario($iduser);
 $perfil = $modeloPerfilesUsuario->obtenerPorId($iduser);
+
 //$publicaciones = $controladorPublicaciones->obtenerHistoricoPublicacionesAmigos($iduser);
 switch ($accion) {
     case "inicio":
+        //var_dump($perfil);
         require_once "vistas/vistaInicio.php";
+        break;
+    case "reload":
+        //var_dump($perfil);
+        require_once "vistas/inicio/inicio.php";
         break;
     case "perfil":
         $entradas = $controladorPublicaciones->obtenerEntradasUsuario($iduser);
@@ -60,6 +67,12 @@ switch ($accion) {
         break;
     case "actualizarPublicacion":
         require_once "vistas/publicaciones/vistaActualizarEstado.php";
+        break;
+    case "datatablesEntradasUsuario":
+        if(isset($_GET["perfil"])){
+            $modeloPublicaciones->datatablesEntradasUsuario($_GET["perfil"]);
+        }
+        
         break;
     case "amigos":
         $amigos = $modeloUsuario->obtenerAmigos($iduser);
