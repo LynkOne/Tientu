@@ -30,7 +30,7 @@ header ul{
     height: 100%;
     margin: 0;
     padding: 0;
-
+    align-items: baseline;
     justify-content: space-between;
 }  
 header li{

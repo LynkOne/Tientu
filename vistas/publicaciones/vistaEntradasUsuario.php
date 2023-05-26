@@ -86,8 +86,9 @@
                     data=$.parseJSON(data);
                     // Obtener los datos de la respuesta AJAX y actualizar el encabezado de la columna
                     var titulo = data.data[0][0]; // Supongamos que el título se encuentra en la propiedad "titulo" de la respuesta
+                    var fecha = data.data[0][2];
                     var tabla = $('#lista_entradas').DataTable();
-                    tabla.columns(1).header().to$().html(titulo); // La columna se especifica con un índice basado en cero (0) o un selector jQuery
+                    tabla.columns(1).header().to$().html(titulo + ' <span>'+fecha+'</span>'); // La columna se especifica con un índice basado en cero (0) o un selector jQuery
                     data.data[0][1] = await insertarVideoYouTube(data.data[0][1]);
                     // Devolver los datos para que DataTables los procese y muestre en la tabla
                     callback(data);
