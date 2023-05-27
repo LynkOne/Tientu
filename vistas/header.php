@@ -5,13 +5,13 @@
 	<meta charset="utf-8">
 	
 
-	<link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
-	<script src="assets/js/bootstrap/bootstrap.min.js"></script>
+	
 	<script src="assets/js/jquery-3.6.4.min.js"></script>
+	<script src="assets/js/bootstrap/bootstrap.min.js"></script>
 	<script src="assets/js/datatables.min.js"></script>
 	
  
- 
+	<link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
 	<link href="assets/fontawesome/css/fontawesome.css" rel="stylesheet">
 	<link href="assets/fontawesome/css/brands.css" rel="stylesheet">
 	<link href="assets/fontawesome/css/solid.css" rel="stylesheet">
@@ -29,23 +29,7 @@
 	<?php if (isset($_SESSION["id_usuario"])) { ?>
 
 	<div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="miModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="miModalLabel">Título del modal</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-				<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<p>Contenido del modal</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-				<button type="button" class="btn btn-primary">Guardar</button>
-			</div>
-			</div>
-		</div>
+		
 	</div>
 	
 	<div class="" id="videoModal" hidden>

@@ -42,6 +42,8 @@ $modeloComentarios = new ModeloComentarios($conexion);
 $usuario = $modeloUsuario->obtenerUsuario($iduser);
 $perfil = $modeloPerfilesUsuario->obtenerPorId($iduser);
 
+$error_generico="¡Ups! ¡Ha ocurrido un error!";
+
 //$publicaciones = $controladorPublicaciones->obtenerHistoricoPublicacionesAmigos($iduser);
 switch ($accion) {
     case "inicio":
@@ -73,6 +75,10 @@ switch ($accion) {
             $modeloPublicaciones->datatablesEntradasUsuario($_GET["perfil"]);
         }
         
+        break;
+    case "crearEntrada":
+        echo $controladorPublicaciones->crearEntrada($iduser, $_POST["titulo"], $_POST["contenido"]);
+        //var_dump($resultado);
         break;
     case "amigos":
         $amigos = $modeloUsuario->obtenerAmigos($iduser);

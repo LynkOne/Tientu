@@ -1,17 +1,18 @@
 
-<div class="mis-entradas container">
-    <div class="row">
+<div class="mis-entradas container mt-3">
+    <div class="row" style="align-items:baseline;">
         <div class="col-12">
-            <h3>Mi espacio personal</h3>
-            <hr>
+            <div class="d-flex justify-content-between align-items-center"><h3>Mi espacio personal</h3><?php if(count($entradas) != 0){?><a class="crear-entrada" href="#">Crear una entrada</a> <?php }?></div>
+            <hr class="mt-0">
         </div>
     </div>
+    
     <div class="row">
         <div class="col-12">
             
             <?php 
             if(count($entradas) == 0){?>
-                Tu blog está vacío <a href="#">Crea tu primera entrada del blog</a>
+                Tu blog está vacío <a class="crear-entrada" href="#">Crea tu primera entrada del blog</a>
             <?php
             }else{
                 //var_dump($entradas);
@@ -33,7 +34,9 @@
 
         </div>
     </div>
-    <script>
+    
+</div>
+<script>
         //Rellenar entradas con datatables
     $(document).ready(function() {
         
@@ -88,7 +91,7 @@
                     var titulo = data.data[0][0]; // Supongamos que el título se encuentra en la propiedad "titulo" de la respuesta
                     var fecha = data.data[0][2];
                     var tabla = $('#lista_entradas').DataTable();
-                    tabla.columns(1).header().to$().html(titulo + ' <span>'+fecha+'</span>'); // La columna se especifica con un índice basado en cero (0) o un selector jQuery
+                    tabla.columns(1).header().to$().html(titulo + ' <span class="font-weight-normal font-weight-bold">'+fecha+'</span>'); // La columna se especifica con un índice basado en cero (0) o un selector jQuery
                     data.data[0][1] = await insertarVideoYouTube(data.data[0][1]);
                     // Devolver los datos para que DataTables los procese y muestre en la tabla
                     callback(data);
@@ -98,7 +101,7 @@
                 }
             })}
         });
-        
+        $(document).off('click', '#yt-video');
         $(document).on('click', '#yt-video', function(event) {
             event.stopPropagation();
             var target = $(event.currentTarget);
@@ -120,14 +123,22 @@
             }
         });
 
+        $(document).off('click', '.crear-entrada');
+        $(document).on('click', '.crear-entrada', function(event){
+            $('#miModal').load('vistas/publicaciones/vistaCrearEntrada.php', function(){
+                $('#miModal').modal('show');
+            });
 
-        
+        });
+
         // Al cerrar el modal, restablecer el atributo src del iframe para detener la reproducción del video
+        $('#videoModal .fa-xmark').off('click');
         $('#videoModal .fa-xmark').on('click', function(event) {
             var modal = $("#videoModal");
             modal.find('iframe').attr('src', '');
             modal.prop('hidden', true);
         });
+
         async function insertarVideoYouTube(cadena) {
             var regex = /(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+/g;
             var matches = cadena.match(regex);
@@ -144,15 +155,35 @@
                 }
                 var embedHTML ='<div id="yt-video" data-toggle="modal" data-target="#videoModal" class="container"  data-youtube-url="https://www.youtube.com/embed/' + videoId +'"><div class="row"><div class="col-4"><img style="width:100%;height:auto;" src="'+response.thumbnail_url+'"/></div><div class="col-8">'+response.title+'</div></div></div> ';
                 cadena = cadena.replace(urlYouTube, embedHTML);
+                
             }
+            cadena = cadena.replace(/\n/g, '<br />');
             return cadena;
         }
 
         function obtenerVideoId(url) {
-            var regex = /[?&]v=([^&#]+)/;
+            /*var regex = /[?&]v=([^&#]+)/;
             var matches = url.match(regex);
-            return matches ? matches[1] : null;
+            return matches ? matches[1] : null;*/
+            // Patrones de URL de YouTube
+            var patrones = [
+                /(?:https?:\/\/(?:www\.)?)?youtube(?:-nocookie)?\.(?:com|be)\/(?:watch\?(?:.*&)?v=|embed\/|v\/|u\/\w\/|playlist\?|embed\/videoseries\?list=)([^#\&\?\n]+)/,
+                /^https?:\/\/youtu\.be\/([^#\&\?\n]+)/,
+                /(?:https?:\/\/(?:www\.)?)?youtube(?:-nocookie)?\.com\/(?:attribution_link\?a=|v\/|embed\/|playlist\?|watch\?v=|watch\?.+&v=)([^#\&\?\n]+)/
+            ];
+
+            // Buscar el ID en los patrones
+            for (var i = 0; i < patrones.length; i++) {
+                var match = url.match(patrones[i]);
+                if (match && match[1]) {
+                    return match[1];
+                }
+            }
+
+            // Si no se encuentra ningún ID válido
+            return null;
         }
+
         function obtenerJSONVideo(url) {
             return Promise.resolve($.ajax({
                 url: url
@@ -164,4 +195,3 @@
 
     });
     </script>
-</div>

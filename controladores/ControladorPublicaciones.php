@@ -51,6 +51,14 @@ class ControladorPublicaciones {
 
         return $entradas;
     }
+    public function crearEntrada($id_usuario, $titulo, $contenido) {
+        $resultado=false;
+        if(!empty($titulo) && !empty($contenido)){
+            $modeloPublicaciones = new ModeloPublicaciones($this->conexion);
+            $resultado = $modeloPublicaciones->crearEntrada($id_usuario, $titulo, $contenido);
+        }
+        echo json_encode($resultado);
+    }
     
     
     public function obtenerUltimoEstadoUsuario($id_usuario) {

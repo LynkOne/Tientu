@@ -122,11 +122,42 @@ class ModeloPublicaciones {
         
     }
 
+
+
+
+
+
     public function crearPublicacion($id_usuario, $contenido) {
         $sql = "INSERT INTO publicaciones (id_usuario, contenido, fecha_creacion, tipo) VALUES (?, ?, NOW(), 1)";
         $sentencia = $this->conexion->prepare($sql);
         $sentencia->bind_param("is", $id_usuario, $contenido);
         $sentencia->execute();
+    }
+
+    public function crearEntrada($id_usuario, $titulo, $contenido){
+        $sql = "INSERT INTO publicaciones (id_usuario, titulo, contenido, fecha_creacion, tipo) VALUES (?, ?, ?, NOW(), 5)";
+        $sentencia = $this->conexion->prepare($sql);
+        $sentencia->bind_param("iss", $id_usuario, $titulo, $contenido);
+        // Ejecutar la consulta
+        $resultado = $sentencia->execute();
+        //var_dump($resultado);
+        // Verificar si la consulta se ejecutó sin errores
+        if ($resultado === false) {
+            // Ocurrió un error al insertar el registro
+            return false;
+        }
+        
+        // Obtener el número de filas afectadas por la inserción
+        $filas_afectadas = $sentencia->affected_rows;
+        
+        // Verificar si se insertó al menos una fila
+        if ($filas_afectadas > 0) {
+            // El registro se insertó correctamente
+            return true;
+        } else {
+            // No se insertó ninguna fila (posiblemente debido a duplicados de clave primaria)
+            return false;
+        }
     }
 
 }
